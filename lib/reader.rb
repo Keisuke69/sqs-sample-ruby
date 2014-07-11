@@ -24,4 +24,17 @@ def get
 
 end
 
+def get_once
+	sqs = AWS::SQS.new
+
+	queue = sqs.queues.named(@queue_name)
+	msg = queue.receive_message
+	puts msg.body
+	puts msg.handle
+	puts msg.id
+	puts msg.queue.url
+	puts msg.md5
+
+end
+
 get
